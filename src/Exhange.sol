@@ -16,13 +16,17 @@ contract Exchange is ERC20 {
     //Exchange is inheriting ERC20, because our exchange itself is an ERC-20 contract
     // as it is responsible for minting and issuing LP Tokens
    constructor(address token) ERC20("ETH TOKEN LP Token", "lpETHTOKEN") {
+ // Initializes LP Token with name "ETH TOKEN LP Token" and symbol "lpETHTOKEN".
+ // Checks if token is valid (not a zero address).
+ // Sets tokenAddress → The ERC20 token paired with ETH.
     require(token != address(0), "Token address passed is a null address");
     tokenAddress = token;
   }
 
-  // getReserve returns the balance of `token` held by `this` contract
+  // getReserve returns the balance of `token` held by `this` contract. getReserve() - Fetch Token Reserve Balance
   function getReserve() public view returns (uint256) {
     return ERC20(tokenAddress).balanceOf(address(this));
+// Used to check available liquidity before swaps.
   }
 
   
